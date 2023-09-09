@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.example.phoning.HideActionBar
+import com.example.phoning.R
 import com.example.phoning.databinding.ActivitySettingBinding
 
 class SettingActivity : AppCompatActivity() {
@@ -24,20 +25,33 @@ class SettingActivity : AppCompatActivity() {
         binding.tvLanguage.text = SettingCommon.setting_language
         binding.tvAlarm.text = SettingCommon.setting_alarm
 
-        binding!!.imgvBack.setOnClickListener{
+        binding.imgvBack.setOnClickListener{
             finish()
         }
 
+        binding.tvEditId.setOnClickListener {
+
+        }
+
         binding.rlAlarm.setOnClickListener(View.OnClickListener {
-            if(binding.tvAlarm.text.toString()==("꺼짐")) {
-                Toast.makeText(this, "알람이 켜졌습니다",Toast.LENGTH_SHORT).show()
-                binding.tvAlarm.text = "켜짐"
-                SettingCommon.setting_alarm = "켜짐"
-            }  else {
-                Toast.makeText(this, "알람이 꺼졌습니다",Toast.LENGTH_SHORT).show()
-                binding.tvAlarm.text = "꺼짐"
-                SettingCommon.setting_alarm = "꺼짐"
-            }
+            toggleAlarm()
         })
+    }
+
+
+
+
+
+
+    private fun toggleAlarm() {
+        if(binding.tvAlarm.text.toString()==("꺼짐")) {
+            Toast.makeText(this, getString(R.string.alarm_on),Toast.LENGTH_SHORT).show()
+            binding.tvAlarm.text = "켜짐"
+            SettingCommon.setting_alarm = "켜짐"
+        }  else {
+            Toast.makeText(this, getString(R.string.alarm_off),Toast.LENGTH_SHORT).show()
+            binding.tvAlarm.text = "꺼짐"
+            SettingCommon.setting_alarm = "꺼짐"
+        }
     }
 }
