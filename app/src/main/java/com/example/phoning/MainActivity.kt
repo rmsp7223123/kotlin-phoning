@@ -5,7 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.example.phoning.Setting.SettingActivity
+import com.example.phoning.setting.SettingActivity
 import com.example.phoning.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -28,13 +28,13 @@ class MainActivity : AppCompatActivity() {
         val hideActionBar = HideActionBar()
         hideActionBar.hideActionBar(this)
 
-        binding!!.relativeSettings.setOnClickListener(View.OnClickListener {
+        binding.relativeSettings.setOnClickListener(View.OnClickListener {
             // :: 참조
             intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
         })
 
-        binding!!.relativeClick.setOnClickListener(View.OnClickListener {
+        binding.relativeClick.setOnClickListener(View.OnClickListener {
             intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://newjeans.kr/"))
             startActivity(intent)
         });
