@@ -18,7 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val hideActionBar = HideActionBar()
+        hideActionBar.hideActionBar(this)
         binding.imgvCalendar.setOnClickListener(View.OnClickListener {  })
     }
 
