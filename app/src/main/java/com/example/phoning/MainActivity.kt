@@ -1,8 +1,10 @@
 package com.example.phoning
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.phoning.Setting.SettingActivity
 import com.example.phoning.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -11,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     // val = 가변(값의 읽기와 쓰기가 모두 허용되는 변수)
 
     // 전역 변수로 바인딩 객체 선언
+    // ?  = null 을허용하는
     private var mBinding : ActivityMainBinding? = null
     // 매번 null 체크를 할 필요 없이 편의성을 위해 바인딩 변수 재 선언
     private val binding get() =  mBinding!!
@@ -20,7 +23,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         val hideActionBar = HideActionBar()
         hideActionBar.hideActionBar(this)
-        binding.imgvCalendar.setOnClickListener(View.OnClickListener {  })
+
+        binding.relativeSettings.setOnClickListener(View.OnClickListener {
+            // :: 참조
+            var intent = Intent(this, SettingActivity::class.java);
+            startActivity(intent)
+        });
     }
 
     override fun onDestroy() {
