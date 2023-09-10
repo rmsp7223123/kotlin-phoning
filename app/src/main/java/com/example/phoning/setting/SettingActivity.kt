@@ -33,12 +33,17 @@ class SettingActivity : AppCompatActivity() {
         binding.tvEditId.setOnClickListener {
             intent = Intent(this, SettingEditIdActivity::class.java)
             intent.putExtra("tv_id", binding.tvId.text.toString())
-            startActivityForResult(intent , 1)
+            startActivityForResult(intent , 0)
         }
 
         binding.rlAlarm.setOnClickListener(View.OnClickListener {
             toggleAlarm()
         })
+
+        binding.rlLanguage.setOnClickListener {
+            intent = Intent(this, SettingLanguageActivity::class.java)
+            startActivityForResult(intent,1)
+        }
 
     }
 
@@ -62,7 +67,7 @@ class SettingActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
-            1 -> {
+            0 -> {
                 if (resultCode == RESULT_OK) {
                     val test = data?.getStringExtra("test")
                     binding.tvId.text = test
