@@ -67,6 +67,7 @@ class SettingActivity : AppCompatActivity() {
                     val test = data?.getStringExtra("test")
                     binding.tvId.text = test
                     SettingCommon.user_id = test ?: ""
+                    // test가 null이면 "" / 아니면 test
                 }
             }
         }

@@ -20,20 +20,22 @@ class SettingEditIdActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val tv_id = intent.getStringExtra("tv_id")
+        val maxLength = 18
         binding.edtId.setText(tv_id)
-        binding.tvCnt.text = "${tv_id?.length}/18"
+        binding.tvCnt.text = getString(R.string.char_count, tv_id?.length, maxLength)
         var hideActionBar = HideActionBar()
         hideActionBar.hideActionBar(this)
 
         binding.imgvBack.setOnClickListener{
-            val intent = Intent()
-            intent.putExtra("test", tv_id)
-            setResult(RESULT_OK, intent)
+            val resultIntent = Intent()
+            resultIntent.putExtra("test", tv_id)
+            setResult(RESULT_OK, resultIntent)
             finish()
         }
 
         binding.edtId.setOnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) true else false
+            // 엔터키를 눌렀을때만 true를 반환
         }
 
         binding.imgvDelete.setOnClickListener {
@@ -46,17 +48,19 @@ class SettingEditIdActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun afterTextChanged(p0: Editable?) {
-                binding.tvCnt.text = "${p0.toString().length}/18"
-                if (p0.toString().isEmpty()) {
-                    binding.tvDone.setTextColor(Color.parseColor("#5980C3"))
-                } else {
-                    binding.tvDone.setTextColor(Color.parseColor("#000000"))
-                    binding.tvDone.setOnClickListener {
-                        val intent = Intent()
-                        intent.putExtra("test", binding.edtId.text.toString())
-                        setResult(RESULT_OK, intent)
-                        finish()
-                    }
+                val inputLength = p0.toString().length
+                // EditText에 입력된 문자열의 길이를 계산
+                binding.tvCnt.text = getString(R.string.char_count, inputLength, maxLength)
+                // tvCnt = 문자 수: 현재 입력된 길이 / 최대 길이
+
+                val textColor = if (inputLength > 0) Color.parseColor("#000000") else Color.parseColor("#5980C3")
+                binding.tvDone.setTextColor(textColor)
+
+                binding.tvDone.setOnClickListener {
+                    val resultIntent = Intent()
+                    resultIntent.putExtra("test", binding.edtId.text.toString())
+                    setResult(RESULT_OK, resultIntent)
+                    finish()
                 }
 
             }

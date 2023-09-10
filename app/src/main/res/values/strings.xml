@@ -9,4 +9,7 @@
     <string name="check_join"><u>취소</u></string>
     <string name="alarm_on"><u>알람이 켜졌습니다</u></string>
     <string name="alarm_off"><u>알람이 꺼졌습니다</u></string>
+
+    <string name="char_count"><u>%1$d/%2$d</u></string>
+    <!--%1$d 첫번째 매개변수  %2$d 두번째 매개변수-->
 </resources>
