@@ -2,11 +2,11 @@ package com.example.phoning.setting
 
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.KeyEvent
+import androidx.appcompat.app.AppCompatActivity
 import com.example.phoning.HideActionBar
 import com.example.phoning.R
 import com.example.phoning.databinding.ActivitySettingEditIdBinding
@@ -33,8 +33,8 @@ class SettingEditIdActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.edtId.setOnKeyListener { _, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER) true else false
+        binding.edtId.setOnKeyListener { _, keyCode, _ ->
+            (keyCode == KeyEvent.KEYCODE_ENTER)
             // 엔터키를 눌렀을때만 true를 반환
         }
 
