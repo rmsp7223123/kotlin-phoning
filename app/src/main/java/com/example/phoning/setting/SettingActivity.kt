@@ -1,10 +1,10 @@
 package com.example.phoning.setting
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.phoning.HideActionBar
 import com.example.phoning.R
 import com.example.phoning.databinding.ActivitySettingBinding
@@ -73,6 +73,14 @@ class SettingActivity : AppCompatActivity() {
                     binding.tvId.text = test
                     SettingCommon.user_id = test ?: ""
                     // test가 null이면 "" / 아니면 test
+                }
+            }
+
+            1 -> {
+                if (resultCode == RESULT_OK) {
+                    val language = data?.getStringExtra("language")
+                    binding.tvLanguage.text = language
+                    SettingCommon.setting_language = language ?: ""
                 }
             }
         }

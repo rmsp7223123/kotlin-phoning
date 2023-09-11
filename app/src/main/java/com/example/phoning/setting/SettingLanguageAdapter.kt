@@ -5,8 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.phoning.databinding.ItemSettingLanguageRecvBinding
 
-class SettingLanguageAdapter(private var list: ArrayList<LanguageDTO>) :
+class SettingLanguageAdapter(var list: ArrayList<LanguageDTO>) :
     RecyclerView.Adapter<SettingLanguageAdapter.ViewHolder>(){
+
+    private var selectedLanguageIndex: Int = -1 // 선택된 언어의 인덱스
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(ItemSettingLanguageRecvBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -17,15 +19,37 @@ class SettingLanguageAdapter(private var list: ArrayList<LanguageDTO>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.radio.text = list[position].tv_lg
-        holder.binding.radio.isChecked =list[position].isChecked
-        for (j in list.indices) {
-            list[j].isChecked = false
-            list[j] = LanguageDTO(false, list[j].tv_lg)
+
+        val idx : Int = position
+
+        val languageItem = list[position]
+        holder.binding.radio.text = languageItem.tv_lg
+
+        // 현재 항목이 선택된 언어 항목이면 체크
+        holder.binding.radio.isChecked = (position == selectedLanguageIndex)
+
+        holder.binding.radio.setOnClickListener {
+            // 이전에 선택된 언어 항목의 체크를 해제
+            val previousSelectedIndex = selectedLanguageIndex
+            if (previousSelectedIndex != -1) {
+                list[previousSelectedIndex].isChecked = false
+            }
+
+            // 현재 항목을 선택된 언어로 설정하고 체크
+            selectedLanguageIndex = idx
+            list[selectedLanguageIndex].isChecked = true
+
+            // 어댑터 갱신
+            notifyDataSetChanged()
         }
-        list[position].isChecked = true
-        list[position] = LanguageDTO(true, list[position].tv_lg)
-        notifyDataSetChanged()
+    }
+
+    fun getSelectedLanguage(): String? {
+        return if (selectedLanguageIndex != -1) {
+            list[selectedLanguageIndex].tv_lg
+        } else {
+            null
+        }
     }
 
     // 내부 클래스에서는 외부 클래스를 항상 참조
