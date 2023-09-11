@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.phoning.HideActionBar
+import com.example.phoning.R
 import com.example.phoning.databinding.ActivitySettingLanguageBinding
 
 class SettingLanguageActivity : AppCompatActivity() {
@@ -20,7 +21,7 @@ class SettingLanguageActivity : AppCompatActivity() {
         var hideActionBar = HideActionBar()
         hideActionBar.hideActionBar(this)
 
-        val adapter = SettingLanguageAdapter(list)
+        val adapter = SettingLanguageAdapter(getLanguageList())
 //        binding.recvLanguage.adapter = adapter
 //        binding.recvLanguage.layoutManager = LinearLayoutManager(this)
         binding.recvLanguage.apply {
@@ -54,24 +55,24 @@ class SettingLanguageActivity : AppCompatActivity() {
         }
     }
 
-    val list: ArrayList<LanguageDTO>
-        get() {
-            val list = ArrayList<LanguageDTO>()
-            list.add(LanguageDTO(false, "English"))
-            list.add(LanguageDTO(false, "한국어"))
-            list.add(LanguageDTO(false, "日本語"))
-            list.add(LanguageDTO(false, "中國語"))
-            list.add(LanguageDTO(false, "Español"))
-            list.add(LanguageDTO(false, "français"))
-            list.add(LanguageDTO(false, "Deutsch"))
-            list.add(LanguageDTO(false, "Русский"))
-            list.add(LanguageDTO(false, "português "))
-            list.add(LanguageDTO(false, "tiếng Việt"))
-            list.add(LanguageDTO(false, "Bahasa Indonesia"))
-            list.add(LanguageDTO(false, "Italiano"))
+//    val list: ArrayList<LanguageDTO>
+//        get() {
+//            val list = ArrayList<LanguageDTO>()
+//            list.add(LanguageDTO(false, "English"))
+//            list.add(LanguageDTO(false, "한국어"))
+//            list.add(LanguageDTO(false, "日本語"))
+//            list.add(LanguageDTO(false, "中國語"))
+//            list.add(LanguageDTO(false, "Español"))
+//            list.add(LanguageDTO(false, "français"))
+//            list.add(LanguageDTO(false, "Deutsch"))
+//            list.add(LanguageDTO(false, "Русский"))
+//            list.add(LanguageDTO(false, "português "))
+//            list.add(LanguageDTO(false, "tiếng Việt"))
+//            list.add(LanguageDTO(false, "Bahasa Indonesia"))
+//            list.add(LanguageDTO(false, "Italiano"))
 //            list.add(LanguageDTO(false, "الْعَرَبِيَّة"))
-            list.add(LanguageDTO(false, "Türkçe "))
-            list.find { it.tv_lg == SettingCommon.setting_language }?.isChecked = true
+//            list.add(LanguageDTO(false, "Türkçe "))
+//            list.find { it.tv_lg == SettingCommon.setting_language }?.isChecked = true
             // find : 탐색을 앞에서 부터 시작 하여 만족 하는 원소가 있다면 반환, 없다면 null
             // findLast : 탐색을 뒤에 서부터 시작 하여 만족 하는 원소가 있다면 반환, 없다면 null
             // it는 람다식 에서 현재 반복 되는 리스트 요소를 나타 내는 변수 즉, list의 각 요소를 it로 차례로 대응 시키며 조건을 비교
@@ -84,8 +85,24 @@ class SettingLanguageActivity : AppCompatActivity() {
 //                    list[i] = LanguageDTO(true, list[i].tv_lg)
 //                }
 //            }
-            return list
+//            return list
+//        }
+
+    private fun getLanguageList(): ArrayList<LanguageDTO> {
+        val languageArray = resources.getStringArray(R.array.language_array)
+        val selectedLanguage = SettingCommon.setting_language
+        val list = ArrayList<LanguageDTO>()
+
+        for (language in languageArray) {
+            // languageArray를 순회하는 반복문
+            val isChecked = (language == selectedLanguage)
+            // 현재 언어항목과 같으면 true
+            val languageDTO = LanguageDTO(isChecked, language)
+            list.add(languageDTO)
         }
+
+        return list
+    }
 
     private fun setResultAndFinish(language: String) {
         val intent = Intent()

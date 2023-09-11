@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.phoning.databinding.ItemSettingLanguageRecvBinding
 
-class SettingLanguageAdapter(var list: ArrayList<LanguageDTO>) :
+class SettingLanguageAdapter(private var list: ArrayList<LanguageDTO>) :
     RecyclerView.Adapter<SettingLanguageAdapter.ViewHolder>(){
 
     private var selectedLanguageIndex: Int = -1 // 선택된 언어의 인덱스
