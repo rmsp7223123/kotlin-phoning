@@ -1,4 +1,4 @@
-package com.example.phoning.setting
+package com.example.phoning.dto
 
 data class LanguageDTO (var isChecked: Boolean, var tv_lg: String)
 

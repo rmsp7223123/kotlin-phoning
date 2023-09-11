@@ -1,4 +1,4 @@
-package com.example.phoning.setting
+package com.example.phoning.common
 
 object  SettingCommon {
 

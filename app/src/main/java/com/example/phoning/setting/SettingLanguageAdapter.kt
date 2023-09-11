@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.phoning.databinding.ItemSettingLanguageRecvBinding
+import com.example.phoning.dto.LanguageDTO
 
 class SettingLanguageAdapter(private var list: ArrayList<LanguageDTO>) :
     RecyclerView.Adapter<SettingLanguageAdapter.ViewHolder>(){

@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.phoning.HideActionBar
 import com.example.phoning.R
+import com.example.phoning.common.SettingCommon
 import com.example.phoning.databinding.ActivitySettingBinding
 
 class SettingActivity : AppCompatActivity() {
@@ -43,6 +44,11 @@ class SettingActivity : AppCompatActivity() {
         binding.rlLanguage.setOnClickListener {
             intent = Intent(this, SettingLanguageActivity::class.java)
             startActivityForResult(intent,1)
+        }
+
+        binding.rlSubscribe.setOnClickListener {
+            intent = Intent(this, SettingSubscribeActivity::class.java)
+            startActivity(intent)
         }
 
     }

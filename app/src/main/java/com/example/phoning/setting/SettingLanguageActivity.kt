@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.phoning.HideActionBar
 import com.example.phoning.R
+import com.example.phoning.common.SettingCommon
 import com.example.phoning.databinding.ActivitySettingLanguageBinding
+import com.example.phoning.dto.LanguageDTO
 
 class SettingLanguageActivity : AppCompatActivity() {
 
