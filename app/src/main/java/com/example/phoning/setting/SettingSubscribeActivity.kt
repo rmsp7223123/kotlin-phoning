@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.phoning.HideActionBar
 import com.example.phoning.R
-import com.example.phoning.common.CommonVar
+import com.example.phoning.common.SettingCommon
 import com.example.phoning.databinding.ActivitySettingSubscribeBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -25,7 +25,7 @@ class SettingSubscribeActivity : AppCompatActivity() {
         val hideActionBar = HideActionBar()
         hideActionBar.hideActionBar(this)
 
-        if (CommonVar.loginInfo?.subscribe == "y") {
+        if (SettingCommon.subscribe == "연간") {
             binding.imgvSubscribe.setImageResource(R.drawable.setting_subscribe2)
         } else {
             binding.imgvSubscribe.setImageResource(R.drawable.setting_subscribe)
@@ -42,8 +42,7 @@ class SettingSubscribeActivity : AppCompatActivity() {
         binding.imgvBack.setOnClickListener { finish() }
 
         binding.tvSubscribe.setOnClickListener {
-            intent = Intent(this, SettingAlterSubscribeActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(Intent(this, SettingAlterSubscribeActivity::class.java), 0)
         }
 
         binding.imgvRefresh.setOnClickListener {
@@ -53,5 +52,21 @@ class SettingSubscribeActivity : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(0,0)
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when(requestCode) {
+            0 -> {
+                if (resultCode == 0) {
+                    // 결과 코드가 0인 경우의 처리
+                    binding.imgvSubscribe.setImageResource(R.drawable.setting_subscribe)
+                } else if (resultCode == 1) {
+                    // 결과 코드가 1인 경우의 처리
+                    binding.imgvSubscribe.setImageResource(R.drawable.setting_subscribe2)
+                }
+            }
+        }
+        binding.imgvSubscribe.invalidate()
     }
 }
