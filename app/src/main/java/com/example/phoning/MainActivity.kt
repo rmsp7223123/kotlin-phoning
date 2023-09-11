@@ -2,11 +2,12 @@ package com.example.phoning
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.example.phoning.setting.SettingActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.example.phoning.calls.CallsMainActivity
 import com.example.phoning.databinding.ActivityMainBinding
+import com.example.phoning.setting.SettingActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,14 +31,15 @@ class MainActivity : AppCompatActivity() {
 
         binding.relativeSettings.setOnClickListener(View.OnClickListener {
             // :: 참조
-            intent = Intent(this, SettingActivity::class.java)
-            startActivity(intent)
+         startActivity(Intent(this, SettingActivity::class.java))
         })
 
         binding.relativeClick.setOnClickListener(View.OnClickListener {
             intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://newjeans.kr/"))
             startActivity(intent)
-        });
+        })
+
+        binding.imgvCalls.setOnClickListener { startActivity(Intent(this,CallsMainActivity::class.java)) }
 
     }
 

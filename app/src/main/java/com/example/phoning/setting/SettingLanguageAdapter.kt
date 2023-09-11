@@ -3,7 +3,7 @@ package com.example.phoning.setting
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.phoning.databinding.ItemSettingLanguageRecvBinding
+import com.example.phoning.databinding.ItemRecvSettingLanguageBinding
 import com.example.phoning.dto.LanguageDTO
 
 class SettingLanguageAdapter(private var list: ArrayList<LanguageDTO>) :
@@ -12,7 +12,7 @@ class SettingLanguageAdapter(private var list: ArrayList<LanguageDTO>) :
     private var selectedLanguageIndex: Int = -1 // 선택된 언어의 인덱스
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(ItemSettingLanguageRecvBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ViewHolder(ItemRecvSettingLanguageBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun getItemCount(): Int {
@@ -54,7 +54,7 @@ class SettingLanguageAdapter(private var list: ArrayList<LanguageDTO>) :
     }
 
     // 내부 클래스에서는 외부 클래스를 항상 참조
-    inner class ViewHolder(var binding: ItemSettingLanguageRecvBinding) : RecyclerView.ViewHolder(
+    inner class ViewHolder(var binding: ItemRecvSettingLanguageBinding) : RecyclerView.ViewHolder(
         binding.root
     )
 }
