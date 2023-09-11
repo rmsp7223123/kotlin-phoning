@@ -1,5 +1,7 @@
 package com.example.phoning.calls
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,7 +9,6 @@ import com.example.phoning.R
 import com.example.phoning.common.CallsCommon
 import com.example.phoning.databinding.ItemRecvCallsBinding
 import com.example.phoning.dto.CallsMainDTO
-import com.google.firebase.database.core.Context
 
 class CallsMainAdapter(var list: ArrayList<CallsMainDTO>, var context : Context, var isCheckCall : Boolean) : RecyclerView.Adapter<CallsMainAdapter.ViewHolder>() {
 
@@ -30,6 +31,9 @@ class CallsMainAdapter(var list: ArrayList<CallsMainDTO>, var context : Context,
         holder.binding.containerRelative.setOnClickListener {
             CallsCommon.IsCheck[position] = true
             list[position].isCheck = CallsCommon.IsCheck[position]
+            val intent = Intent(context, CallsSplashActivity::class.java)
+            intent.putExtra("call_date", list[position].callDate)
+            context.startActivity(intent)
         }
     }
 
