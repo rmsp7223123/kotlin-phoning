@@ -66,8 +66,8 @@ class CallsMainActivity : AppCompatActivity() {
             } else {
                 // 통화 한 사람들만 보이게
                 adapter = CallsMainAdapter(callList(), this, true)
-                binding!!.recv.adapter = adapter
-                binding!!.recv.layoutManager = LinearLayoutManager(this)
+                binding.recv.adapter = adapter
+                binding.recv.layoutManager = LinearLayoutManager(this)
                 R.drawable.calls_call
             }
             alarmCount++
@@ -75,7 +75,6 @@ class CallsMainActivity : AppCompatActivity() {
         }
 
         binding.imgvBack.setOnClickListener { finish() }
-
     }
 
     private fun callList() : ArrayList<CallsMainDTO> {
