@@ -34,6 +34,7 @@ class CallsMainAdapter(var list: ArrayList<CallsMainDTO>, var context : Context,
             val intent = Intent(context, CallsSplashActivity::class.java)
             intent.putExtra("call_date", list[position].callDate)
             context.startActivity(intent)
+            notifyDataSetChanged()
         }
     }
 

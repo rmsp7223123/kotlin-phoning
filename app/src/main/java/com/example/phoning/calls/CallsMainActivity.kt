@@ -50,31 +50,39 @@ class CallsMainActivity : AppCompatActivity() {
         }
 
         binding.imgvCalls.setOnClickListener {
-            val imageResource = if(alarmCount % 2 == 1) {
+            val list: ArrayList<CallsMainDTO>
+            val imageResource: Int
+
+            if (alarmCount % 2 == 1) {
                 // 통화 안 한 사람들만 보이게
-                val list : ArrayList<CallsMainDTO> = callList()
-                val templist : ArrayList<CallsMainDTO> = ArrayList()
-                for (i in list.indices) {
-                    if (!list[i].isCheck) {
-                        templist.add(list[i])
+                list = ArrayList()
+                for (item in callList()) {
+                    if (!item.isCheck) {
+                        list.add(item)
                     }
                 }
-                adapter = CallsMainAdapter(templist, this, false)
-                binding.recv.adapter = adapter
-                binding.recv.layoutManager = LinearLayoutManager(this)
-                R.drawable.calls_missedcall
+                imageResource = R.drawable.calls_missedcall
             } else {
                 // 통화 한 사람들만 보이게
-                adapter = CallsMainAdapter(callList(), this, true)
-                binding.recv.adapter = adapter
-                binding.recv.layoutManager = LinearLayoutManager(this)
-                R.drawable.calls_call
+                list = callList()
+                imageResource = R.drawable.calls_call
             }
+
+            updateAdapter(list, alarmCount % 2 == 1)
+            // 홀수 -> 부재중 제외, 짝수 -> 전체
             alarmCount++
             binding.imgvCalls.setImageResource(imageResource)
+
         }
 
         binding.imgvBack.setOnClickListener { finish() }
+
+    }
+
+    private fun updateAdapter(data: ArrayList<CallsMainDTO>, showAll: Boolean) {
+        val adapter = CallsMainAdapter(data, this, showAll)
+        binding.recv.adapter = adapter
+        binding.recv.layoutManager = LinearLayoutManager(this)
     }
 
     private fun callList() : ArrayList<CallsMainDTO> {

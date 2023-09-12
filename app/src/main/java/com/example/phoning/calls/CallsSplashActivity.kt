@@ -28,7 +28,7 @@ class CallsSplashActivity : AppCompatActivity() {
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .into(binding.imgvLoading)
 
-        var callDate = getIntent().getStringExtra("call_date")
+        var callDate = intent.getStringExtra("call_date")
         when (callDate) {
             "2023.6.27 16:10" -> binding.containerBackground.setBackgroundResource(R.drawable.calls_danielle2)
             "2023.6.16 14:05" -> binding.containerBackground.setBackgroundResource(R.drawable.calls_minji2)
@@ -60,6 +60,7 @@ class CallsSplashActivity : AppCompatActivity() {
 
         Handler().postDelayed({
             val intent = Intent(this, CallsOnCallActivity::class.java)
+            intent.putExtra("call_date", callDate)
             startActivity(intent)
             finish()
         }, 2000)
