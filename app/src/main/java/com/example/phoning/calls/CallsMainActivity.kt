@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.phoning.HideActionBar
 import com.example.phoning.R
 import com.example.phoning.common.CallsCommon
+import com.example.phoning.common.CallsCommon.alarmCount
+import com.example.phoning.common.CallsCommon.callCount
 import com.example.phoning.databinding.ActivityCallsMainBinding
 import com.example.phoning.dto.CallsMainDTO
 
@@ -28,7 +30,6 @@ class CallsMainActivity : AppCompatActivity() {
             this.adapter = adapter
         }
 
-        val callCount = CallsCommon.callCount
 //        if(CallsCommon.callCount % 2 == 1) {
 //            binding.imgvBell.setImageResource(R.drawable.calls_bell)
 //        } else {
@@ -39,13 +40,19 @@ class CallsMainActivity : AppCompatActivity() {
         binding.imgvBell.setOnClickListener {
             val imageResource = if (callCount % 2 == 1) {
                 Toast.makeText(this, "이제부터 통화 알림을 받지 않아요.", Toast.LENGTH_SHORT).show()
-                R.drawable.calls_bell2
+                 R.drawable.calls_bell2
             } else {
                 Toast.makeText(this, "이제부터 통화 알림을 받을 수 있어요.", Toast.LENGTH_SHORT).show()
-                R.drawable.calls_bell
+                 R.drawable.calls_bell
             }
-            CallsCommon.callCount++
+            callCount++
             binding.imgvBell.setImageResource(imageResource)
+        }
+
+        binding.imgvCalls.setOnClickListener {
+            val imageResource = if(alarmCount % 2 == 1) R.drawable.calls_missedcall else R.drawable.calls_call
+            alarmCount++
+            binding.imgvCalls.setImageResource(imageResource)
         }
 
         binding.imgvBack.setOnClickListener { finish() }
