@@ -24,7 +24,7 @@ class CallsMainActivity : AppCompatActivity() {
         val hideActionBar = HideActionBar()
         hideActionBar.hideActionBar(this)
 
-        val adapter = CallsMainAdapter(callList(),this,true)
+        var adapter = CallsMainAdapter(callList(),this,true)
         binding.recv.apply {
             layoutManager = LinearLayoutManager(this@CallsMainActivity)
             this.adapter = adapter
@@ -50,7 +50,26 @@ class CallsMainActivity : AppCompatActivity() {
         }
 
         binding.imgvCalls.setOnClickListener {
-            val imageResource = if(alarmCount % 2 == 1) R.drawable.calls_missedcall else R.drawable.calls_call
+            val imageResource = if(alarmCount % 2 == 1) {
+                // 통화 안 한 사람들만 보이게
+                val list : ArrayList<CallsMainDTO> = callList()
+                val templist : ArrayList<CallsMainDTO> = ArrayList()
+                for (i in list.indices) {
+                    if (!list[i].isCheck) {
+                        templist.add(list[i])
+                    }
+                }
+                adapter = CallsMainAdapter(templist, this, false)
+                binding.recv.adapter = adapter
+                binding.recv.layoutManager = LinearLayoutManager(this)
+                R.drawable.calls_missedcall
+            } else {
+                // 통화 한 사람들만 보이게
+                adapter = CallsMainAdapter(callList(), this, true)
+                binding!!.recv.adapter = adapter
+                binding!!.recv.layoutManager = LinearLayoutManager(this)
+                R.drawable.calls_call
+            }
             alarmCount++
             binding.imgvCalls.setImageResource(imageResource)
         }
