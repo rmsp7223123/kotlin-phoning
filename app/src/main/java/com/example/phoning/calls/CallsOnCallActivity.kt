@@ -1,5 +1,6 @@
 package com.example.phoning.calls
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.AsyncTask
 import android.os.Bundle
@@ -173,6 +174,9 @@ class CallsOnCallActivity : AppCompatActivity() {
         }
 
         binding.imgvCalloff.setOnClickListener {
+            val intent = Intent(this, CallsCallOffSplashActivity::class.java)
+            intent.putExtra("call_date", callDate)
+            startActivity(intent)
             finish()
         }
 
