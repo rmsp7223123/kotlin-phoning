@@ -7,6 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.phoning.calls.CallsMainActivity
 import com.example.phoning.databinding.ActivityMainBinding
+import com.example.phoning.message.MessageMainActivity
 import com.example.phoning.setting.SettingActivity
 
 class MainActivity : AppCompatActivity() {
@@ -38,8 +39,9 @@ class MainActivity : AppCompatActivity() {
             intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://newjeans.kr/"))
             startActivity(intent)
         })
-
+        binding.imgvMessages.setOnClickListener {startActivity(Intent(this, MessageMainActivity::class.java))}
         binding.imgvCalls.setOnClickListener { startActivity(Intent(this,CallsMainActivity::class.java)) }
+
 
     }
 

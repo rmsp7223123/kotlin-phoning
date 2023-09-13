@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/photos_background"
+    android:orientation="vertical"
+    tools:context=".photos.PhotosMainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp">
+
+        <ImageView
+            android:id="@+id/imgv_back"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="40dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="사진"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imgv_gallery"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_width="110dp"
+            android:layout_height="55dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/photos_gallery" />
+
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="10dp"
+                android:text="NewJeans"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+
+            <com.example.phoning.photos.PhotosInnerGridView
+                android:id="@+id/gridv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:numColumns="2"
+                android:scrollbars="none">
+
+            </com.example.phoning.photos.PhotosInnerGridView>
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="10dp"
+                android:text="👖"
+                android:textColor="@color/black"
+                android:textSize="22dp" />
+
+            <com.example.phoning.photos.PhotosInnerGridView
+                android:layout_marginBottom="20dp"
+                android:id="@+id/gridv2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:numColumns="2"
+                android:scrollbars="none">
+
+            </com.example.phoning.photos.PhotosInnerGridView>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>
