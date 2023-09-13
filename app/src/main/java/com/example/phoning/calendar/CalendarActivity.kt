@@ -1,18 +1,18 @@
-package com.example.phoning.photos
+package com.example.phoning.calendar
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.phoning.HideActionBar
 import com.example.phoning.R
-import com.example.phoning.databinding.ActivityPhotosMainBinding
+import com.example.phoning.databinding.ActivityCalendarBinding
 
-class PhotosMainActivity : AppCompatActivity() {
+class CalendarActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityPhotosMainBinding
+    private lateinit var binding : ActivityCalendarBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityPhotosMainBinding.inflate(layoutInflater)
+        binding = ActivityCalendarBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val hideActionBar = HideActionBar()

@@ -5,9 +5,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.phoning.calendar.CalendarActivity
 import com.example.phoning.calls.CallsMainActivity
 import com.example.phoning.databinding.ActivityMainBinding
 import com.example.phoning.message.MessageMainActivity
+import com.example.phoning.photos.PhotosMainActivity
 import com.example.phoning.setting.SettingActivity
 
 class MainActivity : AppCompatActivity() {
@@ -41,8 +43,8 @@ class MainActivity : AppCompatActivity() {
         })
         binding.imgvMessages.setOnClickListener {startActivity(Intent(this, MessageMainActivity::class.java))}
         binding.imgvCalls.setOnClickListener { startActivity(Intent(this,CallsMainActivity::class.java)) }
-
-
+        binding.relativePhotos.setOnClickListener{startActivity(Intent(this, PhotosMainActivity::class.java))}
+        binding.imgvCalendar.setOnClickListener { startActivity(Intent(this, CalendarActivity::class.java)) }
     }
 
     override fun onDestroy() {
