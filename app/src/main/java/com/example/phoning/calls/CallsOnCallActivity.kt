@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.example.phoning.HideActionBar
 import com.example.phoning.R
+import com.example.phoning.common.CallInfo
 import com.example.phoning.databinding.ActivityCallsOnCallBinding
 
 class CallsOnCallActivity : AppCompatActivity() {
@@ -27,10 +28,22 @@ class CallsOnCallActivity : AppCompatActivity() {
     private var taskProgress = 0
     private var seekBarTask: AsyncTask<Void, Int, Void>? = null
 
+    private val callData = mapOf(
+        "2023.6.27 16:10" to CallInfo(R.drawable.calls_danielle2, "다니엘_Danielle\uD83C\uDF3B", "00:37:46"),
+        "2023.6.16 14:05" to CallInfo(R.drawable.calls_minji2, "민지Minji\uD83E\uDDF8", "00:38:00"),
+        "2023.5.17 18:30" to CallInfo(R.drawable.calls_newjeans2, "NewJeans\uD83D\uDC56", "00:29:05"),
+        "2023.4.27 21:11" to CallInfo(R.drawable.calls_hyein2, "혜인:)Hyein\uD83D\uDC23", "00:37:46"),
+        "2023.4.5 13:15" to CallInfo(R.drawable.calls_hanni2, "하니_hanni_:)", "00:51:34"),
+        "2023.3.27 15:05" to CallInfo(R.drawable.calls_haerin2, "해린_haerin", "00:26:20"),
+        "2023.3.25 12:57" to CallInfo(R.drawable.calls_hyein2, "혜인:)Hyein\uD83D\uDC23", "00:07:14"),
+        "2023.3.25 11:34" to CallInfo(R.drawable.calls_minji2, "민지Minji\uD83E\uDDF8", "00:45:45")
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCallsOnCallBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         startSeekBar()
 
         val hideActionBar = HideActionBar()
@@ -52,48 +65,50 @@ class CallsOnCallActivity : AppCompatActivity() {
             else  binding.containerCall.visibility = View.INVISIBLE
         }
 
-        when (callDate) {
-            "2023.6.27 16:10" -> {
-                binding.containerBackground.setBackgroundResource(R.drawable.calls_danielle2)
-                binding.tvName.text = "다니엘_Danielle\uD83C\uDF3B"
-                binding.tvCallTotaltime.text = "00:37:46"
-            }
-            "2023.6.16 14:05" -> {
-                binding.containerBackground.setBackgroundResource(R.drawable.calls_minji2)
-                binding.tvName.text = "민지Minji\uD83E\uDDF8"
-                binding.tvCallTotaltime.text = "00:38:00"
-            }
-            "2023.5.17 18:30" -> {
-                binding.containerBackground.setBackgroundResource(R.drawable.calls_newjeans2)
-                binding.tvName.text = "NewJeans\uD83D\uDC56"
-                binding.tvCallTotaltime.text = "00:29:05"
-            }
-            "2023.4.27 21:11" -> {
-                binding.containerBackground.setBackgroundResource(R.drawable.calls_hyein2)
-                binding.tvName.text = "혜인:)Hyein\uD83D\uDC23"
-                binding.tvCallTotaltime.text = "00:37:46"
-            }
-            "2023.4.5 13:15" -> {
-                binding.containerBackground.setBackgroundResource(R.drawable.calls_hanni2)
-                binding.tvName.text = "하니_hanni_:)"
-                binding.tvCallTotaltime.text = "00:51:34"
-            }
-            "2023.3.27 15:05" -> {
-                binding.containerBackground.setBackgroundResource(R.drawable.calls_haerin2)
-                binding.tvName.text = "해린_haerin"
-                binding.tvCallTotaltime.text = "00:26:20"
-            }
-            "2023.3.25 12:57" -> {
-                binding.containerBackground.setBackgroundResource(R.drawable.calls_hyein2)
-                binding.tvName.text = "혜인:)Hyein\uD83D\uDC23"
-                binding.tvCallTotaltime.text = "00:07:14"
-            }
-            "2023.3.25 11:34" -> {
-                binding.containerBackground.setBackgroundResource(R.drawable.calls_minji2)
-                binding.tvName.text = "민지Minji\uD83E\uDDF8"
-                binding.tvCallTotaltime.text = "00:45:45"
-            }
-        }
+        setCallInfo(callDate)
+
+//        when (callDate) {
+//            "2023.6.27 16:10" -> {
+//                binding.containerBackground.setBackgroundResource(R.drawable.calls_danielle2)
+//                binding.tvName.text = "다니엘_Danielle\uD83C\uDF3B"
+//                binding.tvCallTotaltime.text = "00:37:46"
+//            }
+//            "2023.6.16 14:05" -> {
+//                binding.containerBackground.setBackgroundResource(R.drawable.calls_minji2)
+//                binding.tvName.text = "민지Minji\uD83E\uDDF8"
+//                binding.tvCallTotaltime.text = "00:38:00"
+//            }
+//            "2023.5.17 18:30" -> {
+//                binding.containerBackground.setBackgroundResource(R.drawable.calls_newjeans2)
+//                binding.tvName.text = "NewJeans\uD83D\uDC56"
+//                binding.tvCallTotaltime.text = "00:29:05"
+//            }
+//            "2023.4.27 21:11" -> {
+//                binding.containerBackground.setBackgroundResource(R.drawable.calls_hyein2)
+//                binding.tvName.text = "혜인:)Hyein\uD83D\uDC23"
+//                binding.tvCallTotaltime.text = "00:37:46"
+//            }
+//            "2023.4.5 13:15" -> {
+//                binding.containerBackground.setBackgroundResource(R.drawable.calls_hanni2)
+//                binding.tvName.text = "하니_hanni_:)"
+//                binding.tvCallTotaltime.text = "00:51:34"
+//            }
+//            "2023.3.27 15:05" -> {
+//                binding.containerBackground.setBackgroundResource(R.drawable.calls_haerin2)
+//                binding.tvName.text = "해린_haerin"
+//                binding.tvCallTotaltime.text = "00:26:20"
+//            }
+//            "2023.3.25 12:57" -> {
+//                binding.containerBackground.setBackgroundResource(R.drawable.calls_hyein2)
+//                binding.tvName.text = "혜인:)Hyein\uD83D\uDC23"
+//                binding.tvCallTotaltime.text = "00:07:14"
+//            }
+//            "2023.3.25 11:34" -> {
+//                binding.containerBackground.setBackgroundResource(R.drawable.calls_minji2)
+//                binding.tvName.text = "민지Minji\uD83E\uDDF8"
+//                binding.tvCallTotaltime.text = "00:45:45"
+//            }
+//        }
 
         binding.imgvSub.setOnClickListener {
             val dlgView = LayoutInflater.from(this@CallsOnCallActivity).inflate(R.layout.dialog_calls_on_call, null)
@@ -164,11 +179,12 @@ class CallsOnCallActivity : AppCompatActivity() {
         binding.containerCall.visibility = View.INVISIBLE
 
         binding.containerBackground.setOnClickListener {
-            if (binding.containerCall.visibility == View.INVISIBLE) {
-                binding.containerCall.visibility = View.VISIBLE
-            } else {
-                binding.containerCall.visibility = View.INVISIBLE
-            }
+            binding.containerCall.visibility = if (binding.containerCall.visibility == View.INVISIBLE) View.VISIBLE else View.INVISIBLE
+//            if (binding.containerCall.visibility == View.INVISIBLE) {
+//                binding.containerCall.visibility = View.VISIBLE
+//            } else {
+//                binding.containerCall.visibility = View.INVISIBLE
+//            }
         }
 
         binding.sbTimer.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -194,19 +210,17 @@ class CallsOnCallActivity : AppCompatActivity() {
         binding.btnPlay.setOnClickListener {
             if (imgcnt % 2 == 1) {
                 binding.btnPlay.setImageResource(R.drawable.calls_play)
-                imgcnt++
                 stopSeekBar()
             } else {
                 binding.btnPlay.setImageResource(R.drawable.calls_stop)
-                imgcnt++
                 startSeekBar()
             }
+            imgcnt++
         }
     }
 
     private fun startSeekBar() {
-        val intent1 = intent
-        val callDate = intent1.getStringExtra("call_date")
+        val callDate = intent.getStringExtra("call_date")
         var calltime = 0
 
         when (callDate) {
@@ -289,5 +303,14 @@ class CallsOnCallActivity : AppCompatActivity() {
 
         tvName.setTextColor(Color.parseColor("#6598EE"))
         imgvName.visibility = View.VISIBLE
+    }
+
+    private fun setCallInfo(callDate: String?) {
+        val callInfo = callData[callDate]
+        if (callInfo != null) {
+            binding.containerBackground.setBackgroundResource(callInfo.backgroundResource)
+            binding.tvName.text = callInfo.name
+            binding.tvCallTotaltime.text = callInfo.totalTime
+        }
     }
 }
