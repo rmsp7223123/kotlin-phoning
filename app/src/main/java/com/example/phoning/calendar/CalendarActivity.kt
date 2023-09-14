@@ -2,6 +2,7 @@ package com.example.phoning.calendar
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.phoning.HideActionBar
@@ -97,116 +98,30 @@ class CalendarActivity : AppCompatActivity() {
                 }
             }
         }
-        
+
 
         binding.imgvAll.setOnClickListener {
-            if (!all) {
-                all = true
-                binding.imgvAll.setImageResource(R.drawable.calendar_all_checked)
-                newjeans = false
-                binding.imgvNewjeans.setImageResource(R.drawable.calendar_newjeans)
-                minji = false
-                binding.imgvMinji.setImageResource(R.drawable.calendar_minji)
-                hanni = false
-                binding.imgvHanni.setImageResource(R.drawable.calendar_hanni)
-                danielle = false
-                binding.imgvDanielle.setImageResource(R.drawable.calendar_danielle)
-                hyein = false
-                binding.imgvHyein.setImageResource(R.drawable.calendar_hyein)
-                haerin = false
-                binding.imgvHaerin.setImageResource(R.drawable.calendar_haerin)
-            }
+            all = !all
+            binding.imgvNewjeans.tag = all
+            binding.imgvMinji.tag = all
+            binding.imgvHanni.tag = all
+            binding.imgvDanielle.tag = all
+            binding.imgvHyein.tag = all
+            binding.imgvHaerin.tag = all
+            binding.imgvNewjeans.setImageResource(R.drawable.calendar_newjeans)
+            binding.imgvMinji.setImageResource(R.drawable.calendar_minji)
+            binding.imgvHanni.setImageResource(R.drawable.calendar_hanni )
+            binding.imgvDanielle.setImageResource(R.drawable.calendar_danielle)
+            binding.imgvHyein.setImageResource(R.drawable.calendar_hyein )
+            binding.imgvHaerin.setImageResource(R.drawable.calendar_haerin)
+            binding.imgvAll.setImageResource(R.drawable.calendar_all_checked)
         }
-        binding.imgvNewjeans.setOnClickListener {
-            if (newjeans) {
-                newjeans = false
-                binding.imgvNewjeans.setImageResource(R.drawable.calendar_newjeans)
-                if (!newjeans && !minji && !hanni && !danielle && !hyein && !haerin) {
-                    all = true
-                    binding.imgvAll.setImageResource(R.drawable.calendar_all_checked)
-                }
-            } else {
-                newjeans = true
-                binding.imgvNewjeans.setImageResource(R.drawable.calendar_newjeans_checked)
-                all = false
-                binding.imgvAll.setImageResource(R.drawable.calendar_all)
-            }
-        }
-        binding.imgvMinji.setOnClickListener {
-            if (minji) {
-                minji = false
-                binding.imgvMinji.setImageResource(R.drawable.calendar_minji)
-                if (!newjeans && !minji && !hanni && !danielle && !hyein && !haerin) {
-                    all = true
-                    binding.imgvAll.setImageResource(R.drawable.calendar_all_checked)
-                }
-            } else {
-                minji = true
-                binding.imgvMinji.setImageResource(R.drawable.calendar_minji_checked)
-                all = false
-                binding.imgvAll.setImageResource(R.drawable.calendar_all)
-            }
-        }
-        binding.imgvHanni.setOnClickListener {
-            if (hanni) {
-                hanni = false
-                binding.imgvHanni.setImageResource(R.drawable.calendar_hanni)
-                if (!newjeans && !minji && !hanni && !danielle && !hyein && !haerin) {
-                    all = true
-                    binding.imgvAll.setImageResource(R.drawable.calendar_all_checked)
-                }
-            } else {
-                hanni = true
-                binding.imgvHanni.setImageResource(R.drawable.calendar_hanni_checked)
-                all = false
-                binding.imgvAll.setImageResource(R.drawable.calendar_all)
-            }
-        }
-        binding.imgvDanielle.setOnClickListener {
-            if (danielle) {
-                danielle = false
-                binding.imgvDanielle.setImageResource(R.drawable.calendar_danielle)
-                if (!newjeans && !minji && !hanni && !danielle && !hyein && !haerin) {
-                    all = true
-                    binding.imgvAll.setImageResource(R.drawable.calendar_all_checked)
-                }
-            } else {
-                danielle = true
-                binding.imgvDanielle.setImageResource(R.drawable.calendar_danielle_checked)
-                all = false
-                binding.imgvAll.setImageResource(R.drawable.calendar_all)
-            }
-        }
-        binding.imgvHyein.setOnClickListener {
-            if (hyein) {
-                hyein = false
-                binding.imgvHyein.setImageResource(R.drawable.calendar_hyein)
-                if (!newjeans && !minji && !hanni && !danielle && !hyein && !haerin) {
-                    all = true
-                    binding.imgvAll.setImageResource(R.drawable.calendar_all_checked)
-                }
-            } else {
-                hyein = true
-                binding.imgvHyein.setImageResource(R.drawable.calendar_hyein_checked)
-                all = false
-                binding.imgvAll.setImageResource(R.drawable.calendar_all)
-            }
-        }
-        binding.imgvHaerin.setOnClickListener {
-            if (haerin) {
-                haerin = false
-                binding.imgvHaerin.setImageResource(R.drawable.calendar_haerin)
-                if (!newjeans && !minji && !hanni && !danielle && !hyein && !haerin) {
-                    all = true
-                    binding.imgvAll.setImageResource(R.drawable.calendar_all_checked)
-                }
-            } else {
-                haerin = true
-                binding.imgvHaerin.setImageResource(R.drawable.calendar_haerin_checked)
-                all = false
-                binding.imgvAll.setImageResource(R.drawable.calendar_all)
-            }
-        }
+        setIconClickListener(binding.imgvNewjeans, newjeans, R.drawable.calendar_newjeans_checked, R.drawable.calendar_newjeans)
+        setIconClickListener(binding.imgvMinji, minji, R.drawable.calendar_minji_checked, R.drawable.calendar_minji)
+        setIconClickListener(binding.imgvHanni, hanni, R.drawable.calendar_hanni_checked, R.drawable.calendar_hanni)
+        setIconClickListener(binding.imgvDanielle, danielle, R.drawable.calendar_danielle_checked, R.drawable.calendar_danielle)
+        setIconClickListener(binding.imgvHyein, hyein, R.drawable.calendar_hyein_checked, R.drawable.calendar_hyein)
+        setIconClickListener(binding.imgvHaerin, haerin, R.drawable.calendar_haerin_checked, R.drawable.calendar_haerin)
 
 
 
@@ -344,6 +259,22 @@ class CalendarActivity : AppCompatActivity() {
         )
 
         binding.imgvBack.setOnClickListener { finish() }
+    }
+
+    private fun setIconClickListener(iconView: ImageView, isChecked: Boolean, checkedResId: Int, uncheckedResId: Int) {
+        iconView.tag = isChecked // 아이콘의 초기 상태 설정
+        iconView.setOnClickListener {
+            iconView.tag = !(iconView.tag as Boolean)
+            val resourceId = if (iconView.tag as Boolean) checkedResId else uncheckedResId
+            iconView.setImageResource(resourceId)
+            if (!newjeans && !minji && !hanni && !danielle && !hyein && !haerin) {
+                all = true
+                binding.imgvAll.setImageResource(R.drawable.calendar_all)
+            } else {
+                all = false
+                binding.imgvAll.setImageResource(R.drawable.calendar_all_checked)
+            }
+        }
     }
 
 }

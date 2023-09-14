@@ -1,4 +1,4 @@
-package com.example.phoning.common
+package com.example.phoning.dto
 
 data class CallInfo(
     val backgroundResource: Int,

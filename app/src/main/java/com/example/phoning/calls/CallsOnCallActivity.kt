@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.example.phoning.HideActionBar
 import com.example.phoning.R
-import com.example.phoning.common.CallInfo
+import com.example.phoning.dto.CallInfo
 import com.example.phoning.databinding.ActivityCallsOnCallBinding
 
 class CallsOnCallActivity : AppCompatActivity() {
