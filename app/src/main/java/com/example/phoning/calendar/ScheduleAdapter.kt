@@ -27,8 +27,8 @@ class ScheduleAdapter(var list : ArrayList<CalendarDTO>, var context: Context) :
     override fun onBindViewHolder(holder: ViewHolderParent, position: Int) {
         holder.binding.tvYear.text = list[position].year
         holder.binding.tvMonth.text = list[position].month
-        holder.binding.tvDay.text = list[position].day
-        holder.binding.tvDate.text = list[position].date
+        holder.binding.tvDate.text = list[position].day
+        holder.binding.tvDay.text = list[position].date
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             holder.binding.rlToday.focusable
         }
