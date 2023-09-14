@@ -9,28 +9,36 @@ import com.example.phoning.R
 import com.example.phoning.databinding.ActivityCalendarBinding
 import com.example.phoning.dto.CalendarDTO
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
 class CalendarActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityCalendarBinding
+    private lateinit var binding: ActivityCalendarBinding
 
-    private lateinit var adapter : ScheduleAdapter
+    private lateinit var adapter: ScheduleAdapter
 
     private var locale = Locale("ko", "KR")
 
     private var year = SimpleDateFormat("yyyy")
     private var month = SimpleDateFormat("M")
     private var day = SimpleDateFormat("d")
-    private var date1 = SimpleDateFormat("E", locale)
+    private var date1 = SimpleDateFormat("E", locale) // 로케일을 적용하여 요일을 한글로 가져옴
 
     private var date = Date()
-    private var sYear : String = year.format(date)
-    private var sMonth : String = month.format(date)
-    private var sDay : String = day.format(date)
-    private var sDate : String = date1.format(date)
+    private var sYear: String = year.format(date)
+    private var sMonth: String = month.format(date)
+    private var sDay: String = day.format(date)
+    private var sDate: String = date1.format(date)
 
+    private var all = true
+    private var newjeans = false
+    private var minji = false
+    private var hanni = false
+    private var danielle = false
+    private var hyein = false
+    private var haerin = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,7 +88,7 @@ class CalendarActivity : AppCompatActivity() {
                 binding.tvMonth.text = (binding.dp.month + 1).toString() + "월"
                 binding.tvDay.text = binding.dp.dayOfMonth.toString() + "일"
                 for (i in adapter.list.indices) {
-                    if (adapter.list[i].year == binding.dp.year.toString() + "년" && adapter.list[i].month == (binding.dp.month + 1).toString() + "월" && adapter.list[i].day == binding.dp.dayOfMonth.toString() + "일") {
+                    if (adapter.list[i].year == binding.dp.year.toString() + "년" && adapter.list[i].month == (binding.dp.month + 1).toString() + "월" && adapter.list[i].date == binding.dp.dayOfMonth.toString() + "일") {
                         (binding.recvCalendar.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(
                             i,
                             0
@@ -89,6 +97,121 @@ class CalendarActivity : AppCompatActivity() {
                 }
             }
         }
+        
+
+        binding.imgvAll.setOnClickListener {
+            if (!all) {
+                all = true
+                binding.imgvAll.setImageResource(R.drawable.calendar_all_checked)
+                newjeans = false
+                binding.imgvNewjeans.setImageResource(R.drawable.calendar_newjeans)
+                minji = false
+                binding.imgvMinji.setImageResource(R.drawable.calendar_minji)
+                hanni = false
+                binding.imgvHanni.setImageResource(R.drawable.calendar_hanni)
+                danielle = false
+                binding.imgvDanielle.setImageResource(R.drawable.calendar_danielle)
+                hyein = false
+                binding.imgvHyein.setImageResource(R.drawable.calendar_hyein)
+                haerin = false
+                binding.imgvHaerin.setImageResource(R.drawable.calendar_haerin)
+            }
+        }
+        binding.imgvNewjeans.setOnClickListener {
+            if (newjeans) {
+                newjeans = false
+                binding.imgvNewjeans.setImageResource(R.drawable.calendar_newjeans)
+                if (!newjeans && !minji && !hanni && !danielle && !hyein && !haerin) {
+                    all = true
+                    binding.imgvAll.setImageResource(R.drawable.calendar_all_checked)
+                }
+            } else {
+                newjeans = true
+                binding.imgvNewjeans.setImageResource(R.drawable.calendar_newjeans_checked)
+                all = false
+                binding.imgvAll.setImageResource(R.drawable.calendar_all)
+            }
+        }
+        binding.imgvMinji.setOnClickListener {
+            if (minji) {
+                minji = false
+                binding.imgvMinji.setImageResource(R.drawable.calendar_minji)
+                if (!newjeans && !minji && !hanni && !danielle && !hyein && !haerin) {
+                    all = true
+                    binding.imgvAll.setImageResource(R.drawable.calendar_all_checked)
+                }
+            } else {
+                minji = true
+                binding.imgvMinji.setImageResource(R.drawable.calendar_minji_checked)
+                all = false
+                binding.imgvAll.setImageResource(R.drawable.calendar_all)
+            }
+        }
+        binding.imgvHanni.setOnClickListener {
+            if (hanni) {
+                hanni = false
+                binding.imgvHanni.setImageResource(R.drawable.calendar_hanni)
+                if (!newjeans && !minji && !hanni && !danielle && !hyein && !haerin) {
+                    all = true
+                    binding.imgvAll.setImageResource(R.drawable.calendar_all_checked)
+                }
+            } else {
+                hanni = true
+                binding.imgvHanni.setImageResource(R.drawable.calendar_hanni_checked)
+                all = false
+                binding.imgvAll.setImageResource(R.drawable.calendar_all)
+            }
+        }
+        binding.imgvDanielle.setOnClickListener {
+            if (danielle) {
+                danielle = false
+                binding.imgvDanielle.setImageResource(R.drawable.calendar_danielle)
+                if (!newjeans && !minji && !hanni && !danielle && !hyein && !haerin) {
+                    all = true
+                    binding.imgvAll.setImageResource(R.drawable.calendar_all_checked)
+                }
+            } else {
+                danielle = true
+                binding.imgvDanielle.setImageResource(R.drawable.calendar_danielle_checked)
+                all = false
+                binding.imgvAll.setImageResource(R.drawable.calendar_all)
+            }
+        }
+        binding.imgvHyein.setOnClickListener {
+            if (hyein) {
+                hyein = false
+                binding.imgvHyein.setImageResource(R.drawable.calendar_hyein)
+                if (!newjeans && !minji && !hanni && !danielle && !hyein && !haerin) {
+                    all = true
+                    binding.imgvAll.setImageResource(R.drawable.calendar_all_checked)
+                }
+            } else {
+                hyein = true
+                binding.imgvHyein.setImageResource(R.drawable.calendar_hyein_checked)
+                all = false
+                binding.imgvAll.setImageResource(R.drawable.calendar_all)
+            }
+        }
+        binding.imgvHaerin.setOnClickListener {
+            if (haerin) {
+                haerin = false
+                binding.imgvHaerin.setImageResource(R.drawable.calendar_haerin)
+                if (!newjeans && !minji && !hanni && !danielle && !hyein && !haerin) {
+                    all = true
+                    binding.imgvAll.setImageResource(R.drawable.calendar_all_checked)
+                }
+            } else {
+                haerin = true
+                binding.imgvHaerin.setImageResource(R.drawable.calendar_haerin_checked)
+                all = false
+                binding.imgvAll.setImageResource(R.drawable.calendar_all)
+            }
+        }
+
+
+
+
+
 
         //오늘날짜로 되돌리기
         binding.imgvToday.setOnClickListener {
@@ -104,64 +227,123 @@ class CalendarActivity : AppCompatActivity() {
             // "sYear", "sMonth", "sDay" 변수에서 가져온 값을 사용하여 DatePicker의 초기 상태를 설정
         }
 
-        val list = ArrayList<CalendarDTO>()
-        list.add(
+
+        val dayOffset = -3 // 현재 날짜에서 몇 일 전부터 보여줄지 결정
+        val list = (0 until 7).map { i ->
+            // map 함수는 리스트나 배열의 각 요소에 대해 주어진 람다 함수를 적용하고 그 결과를 새로운 리스트로 반환
+            val calendar =
+                Calendar.getInstance().apply { add(Calendar.DAY_OF_MONTH, dayOffset + i) }
+            // Calendar.getInstance()를 사용하여 현재 시스템 시간과 날짜 정보가 포함된 Calendar 객체를 생성
+            // Calendar.DAY_OF_MONTH 필드에 dayOffset + i 값을 더해주어 해당 날짜를 계산
+            // dayOffset은 현재 날짜에서 몇 일 전부터 보여줄지를 나타내는 변수
+            // i는 0부터 6까지의 값을 가지며 오늘로부터 몇 일 후의 날짜를 계산
+            val dayOfWeek = when (calendar.get(Calendar.DAY_OF_WEEK)) {
+                Calendar.SUNDAY -> "일요일"
+                Calendar.MONDAY -> "월요일"
+                Calendar.TUESDAY -> "화요일"
+                Calendar.WEDNESDAY -> "수요일"
+                Calendar.THURSDAY -> "목요일"
+                Calendar.FRIDAY -> "금요일"
+                Calendar.SATURDAY -> "토요일"
+                else -> ""
+            }
             CalendarDTO(
-                sYear + "년",
-                sMonth + "월",
-                (sDay.toInt() - 3).toString() + "일",
-                todayArr[4] + "요일"
+                "${calendar.get(Calendar.YEAR)}년",
+                "${calendar.get(Calendar.MONTH) + 1}월",
+                "${calendar.get(Calendar.DAY_OF_MONTH)}일",
+                dayOfWeek
             )
-        )
-        list.add(
-            CalendarDTO(
-                sYear + "년",
-                sMonth + "월",
-                (sDay.toInt() - 2).toString() + "일",
-                todayArr[5] + "요일"
-            )
-        )
-        list.add(
-            CalendarDTO(
-                sYear + "년",
-                sMonth + "월",
-                (sDay.toInt() - 1).toString() + "일",
-                todayArr[6] + "요일"
-            )
-        )
-        list.add(CalendarDTO(sYear + "년", sMonth + "월", sDay + "일", todayArr[0] + "요일"))
-        list.add(
-            CalendarDTO(
-                sYear + "년",
-                sMonth + "월",
-                (sDay.toInt() + 1).toString() + "일",
-                todayArr[1] + "요일"
-            )
-        )
-        list.add(
-            CalendarDTO(
-                sYear + "년",
-                sMonth + "월",
-                (sDay.toInt() + 2).toString() + "일",
-                todayArr[2] + "요일"
-            )
-        )
-        list.add(
-            CalendarDTO(
-                sYear + "년",
-                sMonth + "월",
-                (sDay.toInt() + 3).toString() + "일",
-                todayArr[3] + "요일"
-            )
-        )
-        adapter = ScheduleAdapter(list, this)
+        }
+
+//        val list = ArrayList<CalendarDTO>()
+//        val dayOffset = -3
+//
+//        for (i in 0 until 7) {
+//            // 0 until 7은 0부터 6까지의 범위를 나타내며, until 키워드는 시작 값을 포함하고 종료 값을 포함하지 않는 범위를 생성
+//            val calendar = Calendar.getInstance()
+//            calendar.add(Calendar.DAY_OF_MONTH, dayOffset + i)
+//
+//            val year = calendar.get(Calendar.YEAR)
+//            val month = calendar.get(Calendar.MONTH) + 1
+//            val day = calendar.get(Calendar.DAY_OF_MONTH)
+//            val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
+//
+//            list.add(CalendarDTO(
+//                "${year}년",
+//                "${month}월",
+//                "${day}일",
+//                when (dayOfWeek) {
+//                    Calendar.SUNDAY -> "일"
+//                    Calendar.MONDAY -> "월"
+//                    Calendar.TUESDAY -> "화"
+//                    Calendar.WEDNESDAY -> "수"
+//                    Calendar.THURSDAY -> "목"
+//                    Calendar.FRIDAY -> "금"
+//                    Calendar.SATURDAY -> "토"
+//                    else -> ""
+//                }
+//            ))
+//        }
+
+
+//        list.add(
+//            CalendarDTO(
+//                sYear + "년",
+//                sMonth + "월",
+//                (sDay.toInt() - 3).toString() + "일",
+//                todayArr[4] + "요일"
+//            )
+//        )
+//        list.add(
+//            CalendarDTO(
+//                sYear + "년",
+//                sMonth + "월",
+//                (sDay.toInt() - 2).toString() + "일",
+//                todayArr[5] + "요일"
+//            )
+//        )
+//        list.add(
+//            CalendarDTO(
+//                sYear + "년",
+//                sMonth + "월",
+//                (sDay.toInt() - 1).toString() + "일",
+//                todayArr[6] + "요일"
+//            )
+//        )
+//        list.add(CalendarDTO(sYear + "년", sMonth + "월", sDay + "일", todayArr[0] + "요일"))
+//        list.add(
+//            CalendarDTO(
+//                sYear + "년",
+//                sMonth + "월",
+//                (sDay.toInt() + 1).toString() + "일",
+//                todayArr[1] + "요일"
+//            )
+//        )
+//        list.add(
+//            CalendarDTO(
+//                sYear + "년",
+//                sMonth + "월",
+//                (sDay.toInt() + 2).toString() + "일",
+//                todayArr[2] + "요일"
+//            )
+//        )
+//        list.add(
+//            CalendarDTO(
+//                sYear + "년",
+//                sMonth + "월",
+//                (sDay.toInt() + 3).toString() + "일",
+//                todayArr[3] + "요일"
+//            )
+//        )
+        adapter = ScheduleAdapter(ArrayList(list), this)
         binding.recvCalendar.adapter = adapter
         binding.recvCalendar.layoutManager = LinearLayoutManager(this)
         (binding.recvCalendar.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(
-            3,
-            0
+            3, // 스크롤 하고자 하는 목표 위치
+            0 // 목표 아이템의 맨 위에 위치하도록 스크롤을 조정
         )
 
         binding.imgvBack.setOnClickListener { finish() }
     }
+
 }
