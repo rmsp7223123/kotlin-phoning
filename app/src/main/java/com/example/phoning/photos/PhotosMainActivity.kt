@@ -20,7 +20,7 @@ class PhotosMainActivity : AppCompatActivity() {
         val hideActionBar = HideActionBar();
         hideActionBar.hideActionBar(this);
         binding.gridv.adapter = PhotosMainFirstAdapter(layoutInflater, getFirstList(), this);
-        binding.gridv2.adapter = PhotosMainFirstAdapter(layoutInflater, getSecndList(), this);
+        binding.gridv2.adapter = PhotosMainSecondAdapter(layoutInflater, getSecndList(), this);
         binding.imgvBack.setOnClickListener { finish() };
     }
 

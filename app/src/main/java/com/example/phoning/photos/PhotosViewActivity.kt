@@ -3,6 +3,8 @@ package com.example.phoning.photos
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import com.example.phoning.HideActionBar
 import com.example.phoning.R
 import com.example.phoning.databinding.ActivityPhotosViewBinding
@@ -23,7 +25,7 @@ class PhotosViewActivity : AppCompatActivity() {
 
         val hideActionBar = HideActionBar();
         hideActionBar.hideActionBar(this);
-        dto = intent.getSerializableExtra("dto") as PhotosMainDTO;
+        dto = intent.getSerializableExtra("dto") as? PhotosMainDTO;
         gridvAdapter = PhotosViewAdapter(layoutInflater, dto!!, this);
         binding.gridv.adapter = gridvAdapter;
         binding.name.text = dto!!.name;
