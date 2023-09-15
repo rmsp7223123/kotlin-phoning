@@ -9,11 +9,7 @@ import com.example.phoning.R
 import com.example.phoning.databinding.ItemGridvPhotosviewBinding
 import com.example.phoning.dto.PhotosMainDTO
 
-class PhotosViewAdapter(
-    var inflater: LayoutInflater,
-    var dto: PhotosMainDTO,
-    var context: PhotosViewActivity
-) : BaseAdapter() {
+class PhotosViewAdapter(var inflater: LayoutInflater, var dto: PhotosMainDTO, var context: PhotosViewActivity) : BaseAdapter() {
     override fun getCount(): Int {
         return dto.imgSubs!!.size;
     }

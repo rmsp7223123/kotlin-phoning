@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.phoning.HideActionBar
 import com.example.phoning.R
+import com.example.phoning.common.PhotosCommon
 import com.example.phoning.databinding.ActivityPhotosGalleryBinding
 
 class PhotosGalleryActivity : AppCompatActivity() {
@@ -17,6 +18,10 @@ class PhotosGalleryActivity : AppCompatActivity() {
 
         val hideActionBar = HideActionBar();
         hideActionBar.hideActionBar(this);
+
+        if(PhotosCommon.imgRes?.size != 0) {
+            binding.girdv.adapter = PhotosGalleryAdapter(layoutInflater, PhotosCommon.imgRes, this);
+        };
 
         binding.imgvBack.setOnClickListener { finish(); };
     };

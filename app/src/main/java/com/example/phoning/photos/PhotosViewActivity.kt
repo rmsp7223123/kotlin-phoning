@@ -28,7 +28,7 @@ class PhotosViewActivity : AppCompatActivity() {
         dto = intent.getSerializableExtra("dto") as? PhotosMainDTO;
         gridvAdapter = PhotosViewAdapter(layoutInflater, dto!!, this);
         binding.gridv.adapter = gridvAdapter;
-        binding.name.text = dto!!.name;
+        binding.tvName.text = dto!!.name;
 
         binding.imgvBack.setOnClickListener { finish(); };
     }

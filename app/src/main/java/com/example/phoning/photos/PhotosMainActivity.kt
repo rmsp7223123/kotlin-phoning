@@ -1,5 +1,6 @@
 package com.example.phoning.photos
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +23,9 @@ class PhotosMainActivity : AppCompatActivity() {
         binding.gridv.adapter = PhotosMainFirstAdapter(layoutInflater, getFirstList(), this);
         binding.gridv2.adapter = PhotosMainSecondAdapter(layoutInflater, getSecndList(), this);
         binding.imgvBack.setOnClickListener { finish() };
+        binding.imgvGallery.setOnClickListener {
+            startActivity(Intent(this, PhotosGalleryActivity::class.java));
+        }
     }
 
     fun getFirstList(): ArrayList<PhotosMainDTO> {
