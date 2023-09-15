@@ -9,7 +9,11 @@ import com.example.phoning.R
 import com.example.phoning.databinding.ItemGridvPhotosviewBinding
 import com.example.phoning.dto.PhotosMainDTO
 
-class PhotosViewAdapter(var inflater: LayoutInflater, var dto: PhotosMainDTO, var context: PhotosViewActivity) : BaseAdapter() {
+class PhotosViewAdapter(
+    var inflater: LayoutInflater,
+    var dto: PhotosMainDTO,
+    var context: PhotosViewActivity
+) : BaseAdapter() {
     override fun getCount(): Int {
         return dto.imgSubs!!.size;
     }
@@ -32,13 +36,13 @@ class PhotosViewAdapter(var inflater: LayoutInflater, var dto: PhotosMainDTO, va
 //            binding.imgvLike.setImageResource(0)
 //        }
         binding.imgvPhoto.setImageResource(dto.imgSubs!![position]);
-//        binding.imgvPhoto.setOnClickListener { v: View? ->
-//            val intent = Intent(context, PhotosViewDetailActivity::class.java)
-//            intent.putExtra("imgres", dto.imgSubs!![position])
-//            intent.putExtra("dto", dto)
-//            intent.putExtra("count", position)
-//            context.startActivityForResult(intent, 1000)
-//        }
+        binding.imgvPhoto.setOnClickListener {
+            val intent = Intent(context, PhotosViewDetailActivity::class.java)
+            intent.putExtra("imgres", dto.imgSubs!![position])
+            intent.putExtra("dto", dto)
+            intent.putExtra("count", position)
+            context.startActivityForResult(intent, 1000)
+        }
         return binding.root;
     }
 }
