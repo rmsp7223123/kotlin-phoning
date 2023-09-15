@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.phoning.HideActionBar
 import com.example.phoning.R
+import com.example.phoning.common.PhotosCommon
 import com.example.phoning.databinding.ActivityPhotosViewDetailBinding
 
 class PhotosViewDetailActivity : AppCompatActivity() {
@@ -28,8 +29,10 @@ class PhotosViewDetailActivity : AppCompatActivity() {
         binding.imgvLike.setOnClickListener {
             if(count % 2 == 0) {
                 binding.imgvLike.setImageResource(R.drawable.photos_like_empty);
+                PhotosCommon.imgRes?.remove(imgRes);
             } else {
                 binding.imgvLike.setImageResource(R.drawable.photos_like);
+                PhotosCommon.imgRes?.add(imgRes);
             };
             count++;
         };

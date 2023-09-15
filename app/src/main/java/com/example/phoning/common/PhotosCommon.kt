@@ -1,5 +1,5 @@
 package com.example.phoning.common
 
 object PhotosCommon {
-    var imgRes : IntArray? = null
+    var imgRes : ArrayList<Int>? = null
 }
