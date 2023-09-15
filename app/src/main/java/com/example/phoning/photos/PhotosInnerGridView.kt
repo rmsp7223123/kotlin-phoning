@@ -2,7 +2,6 @@ package com.example.phoning.photos
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
 import android.widget.GridView
 
 class PhotosInnerGridView : GridView {
@@ -23,9 +22,10 @@ class PhotosInnerGridView : GridView {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         // 그리드뷰의 높이를 설정
-        // MeasureSpec.makeMeasureSpec를 사용하여 측정 사양(MeasureSpec)을 만들고, 그 높이를 현재 뷰의 높이의 1/4로 설정
-        val expandSpec = MeasureSpec.makeMeasureSpec(MeasureSpec.getSize(heightMeasureSpec) shr 2,
-            MeasureSpec.AT_MOST)
+        val expandSpec = MeasureSpec.makeMeasureSpec(
+            Int.MAX_VALUE shr 2,
+            MeasureSpec.AT_MOST
+        )
 
         super.onMeasure(widthMeasureSpec, expandSpec)
         // super.onMeasure를 호출하여 실제로 뷰의 크기를 설정 이 때, widthMeasureSpec는 너비 측정 사양을, expandSpec는 높이 측정 사양을 사용
