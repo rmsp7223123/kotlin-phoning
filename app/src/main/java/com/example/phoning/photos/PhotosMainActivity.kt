@@ -19,12 +19,12 @@ class PhotosMainActivity : AppCompatActivity() {
 
         val hideActionBar = HideActionBar();
         hideActionBar.hideActionBar(this);
-        binding.gridv.adapter = PhotosMainFirstAdapter(layoutInflater, getlist(), this);
-        binding.gridv2.adapter = PhotosMainFirstAdapter(layoutInflater, getlist(), this);
+        binding.gridv.adapter = PhotosMainFirstAdapter(layoutInflater, getFirstList(), this);
+        binding.gridv2.adapter = PhotosMainFirstAdapter(layoutInflater, getSecndList(), this);
         binding.imgvBack.setOnClickListener { finish() };
     }
 
-    fun getlist(): ArrayList<PhotosMainDTO> {
+    fun getFirstList(): ArrayList<PhotosMainDTO> {
         val list = ArrayList<PhotosMainDTO>();
         list.add(PhotosMainDTO(R.drawable.haerin1, "해린 HAERIN"));
         list.add(PhotosMainDTO(R.drawable.minji1, "민지 MINJI"));
@@ -33,5 +33,14 @@ class PhotosMainActivity : AppCompatActivity() {
         list.add(PhotosMainDTO(R.drawable.hyein1, "혜인 HYEIN"));
         list.add(PhotosMainDTO(R.drawable.newjeans1, "NewJeans"));
         return list
+    };
+
+    fun getSecndList(): ArrayList<PhotosMainDTO> {
+        val list = ArrayList<PhotosMainDTO>();
+        list.add(PhotosMainDTO(R.drawable.photo_camera1, "\uD83D\uDC30 \uD83D\uDCF7"));
+        list.add(PhotosMainDTO(R.drawable.photo_pen1, "\uD83D\uDC30 ✏️"));
+        list.add(PhotosMainDTO(R.drawable.photo_moon1, "\uD83D\uDC30 \uD83C\uDF15"));
+        list.add(PhotosMainDTO(R.drawable.photo_newjeansday1, "NewJeans Day"));
+        return list;
     };
 }
