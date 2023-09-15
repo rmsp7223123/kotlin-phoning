@@ -267,12 +267,13 @@ class CalendarActivity : AppCompatActivity() {
             iconView.tag = !(iconView.tag as Boolean)
             val resourceId = if (iconView.tag as Boolean) checkedResId else uncheckedResId
             iconView.setImageResource(resourceId)
-            if (!newjeans && !minji && !hanni && !danielle && !hyein && !haerin) {
-                all = true
-                binding.imgvAll.setImageResource(R.drawable.calendar_all)
-            } else {
+            if (binding.imgvNewjeans.tag == false && binding.imgvHaerin.tag == false && binding.imgvHanni.tag == false
+                && binding.imgvDanielle.tag == false && binding.imgvHyein.tag == false && binding.imgvMinji.tag == false) {
                 all = false
                 binding.imgvAll.setImageResource(R.drawable.calendar_all_checked)
+            } else  {
+                all = true
+                binding.imgvAll.setImageResource(R.drawable.calendar_all)
             }
         }
     }
