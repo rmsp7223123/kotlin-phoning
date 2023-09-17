@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.example.phoning.R
+import com.example.phoning.common.PhotosCommon
 import com.example.phoning.databinding.ItemGridvPhotosviewBinding
 import com.example.phoning.dto.PhotosMainDTO
 
@@ -26,11 +27,13 @@ class PhotosViewAdapter(var inflater: LayoutInflater, var dto: PhotosMainDTO, va
         val binding = ItemGridvPhotosviewBinding.inflate(
             inflater, parent, false
         );
-//        if (dto.getIsState().get(position) === true) {
+
+//        if (PhotosCommon.imgRes!!.isNotEmpty() && PhotosCommon.imgRes!![position] == binding.imgvPhoto.drawable) {
 //            binding.imgvLike.setImageResource(R.drawable.photos_like)
 //        } else {
-//            binding.imgvLike.setImageResource(0)
+//            binding.imgvLike.setImageResource(R.drawable.photos_like_empty)
 //        }
+
         binding.imgvPhoto.setImageResource(dto.imgSubs!![position]);
         binding.imgvPhoto.setOnClickListener {
             val intent = Intent(context, PhotosViewDetailActivity::class.java)

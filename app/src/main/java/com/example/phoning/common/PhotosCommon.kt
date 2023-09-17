@@ -1,19 +1,8 @@
 package com.example.phoning.common
 
+import java.util.Objects
+
 object PhotosCommon {
-    var imgRes : ArrayList<Int>? = null
-    var IsLike = booleanArrayOf(
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-    )
-}
+    var imgRes : ArrayList<Int>? = null;
+    lateinit var likeBoolean : HashMap<String, Boolean>;
+};

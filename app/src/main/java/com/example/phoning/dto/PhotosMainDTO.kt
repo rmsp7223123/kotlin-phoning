@@ -6,6 +6,7 @@ class PhotosMainDTO(var imgRes: Int,var  name: String) : Serializable {
      var imgSubs: IntArray? = null
      var isState: BooleanArray? = null
      var imgLikes: IntArray? = null
+     var isLiked: Boolean = false
     fun setIsState() {
         isState = BooleanArray(imgSubs!!.size)
     }
