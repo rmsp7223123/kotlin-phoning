@@ -15,6 +15,10 @@ class PhotosViewDetailActivity : AppCompatActivity() {
 
     private var count = 1;
 
+    private lateinit var adapter : PhotosViewAdapter;
+
+    private var dto: PhotosMainDTO? = null;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
         binding = ActivityPhotosViewDetailBinding.inflate(layoutInflater);
@@ -23,13 +27,13 @@ class PhotosViewDetailActivity : AppCompatActivity() {
         val hideActionBar = HideActionBar();
         hideActionBar.hideActionBar(this);
 
-
-
-
         if(imgRes == null) {
             imgRes = ArrayList();
             PhotosCommon.likeBoolean = HashMap();
         };
+
+        dto = intent.getSerializableExtra("dto") as? PhotosMainDTO;
+        adapter = PhotosViewAdapter(layoutInflater, dto!!, PhotosViewActivity());
 
         val imgRes = intent.getIntExtra("imgres", 0);
         val imgKey = imgRes.toString();
@@ -73,6 +77,7 @@ class PhotosViewDetailActivity : AppCompatActivity() {
                 PhotosCommon.imgRes?.add(imgRes);
                 PhotosCommon.likeBoolean?.put(imgKey, true);
             }
+            adapter.notifyDataSetChanged();
         };
 
         binding.imgvBack.setOnClickListener { finish(); };
