@@ -1,5 +1,6 @@
 package com.example.phoning.photos
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +30,13 @@ class PhotosGalleryAdapter(var inflater: LayoutInflater, var list: ArrayList<Int
         if(PhotosCommon.imgRes?.size != 0) {
             binding.imgvPhoto.setImageResource(PhotosCommon.imgRes!![position]);
         }
+
+        binding.imgvPhoto.setOnClickListener {
+            val intent = Intent(context, PhotosViewDetailActivity::class.java);
+            intent.putExtra("imgres", PhotosCommon.imgRes!![position]);
+            context.startActivityForResult(intent, 1000);
+        };
+
         return binding.root;
     };
 }

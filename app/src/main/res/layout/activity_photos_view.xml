@@ -37,7 +37,7 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/imgv_gallery"
+            android:id="@+id/imgv_sort"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_width="40dp"

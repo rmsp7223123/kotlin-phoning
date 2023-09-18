@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.phoning.HideActionBar
 import com.example.phoning.R
 import com.example.phoning.databinding.ActivityPhotosViewBinding
@@ -17,6 +19,8 @@ class PhotosViewActivity : AppCompatActivity() {
     private var dto: PhotosMainDTO? = null;
 
     var gridvAdapter: PhotosViewAdapter? = null;
+
+    private val layoutManager : LinearLayoutManager? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
@@ -31,6 +35,11 @@ class PhotosViewActivity : AppCompatActivity() {
         binding.tvName.text = dto!!.name;
 
         binding.imgvBack.setOnClickListener { finish(); };
+
+        binding.imgvSort.setOnClickListener {
+            dto!!.imgSubs!!.reverse();
+            gridvAdapter!!.notifyDataSetChanged();
+        };
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -41,4 +50,6 @@ class PhotosViewActivity : AppCompatActivity() {
             gridvAdapter!!.notifyDataSetChanged();
         };
     }
+
+
 }

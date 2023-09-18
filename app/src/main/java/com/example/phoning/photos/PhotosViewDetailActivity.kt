@@ -15,10 +15,6 @@ class PhotosViewDetailActivity : AppCompatActivity() {
 
     private var count = 1;
 
-    private lateinit var adapter : PhotosViewAdapter;
-
-    private var dto: PhotosMainDTO? = null;
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
         binding = ActivityPhotosViewDetailBinding.inflate(layoutInflater);
@@ -32,12 +28,9 @@ class PhotosViewDetailActivity : AppCompatActivity() {
             PhotosCommon.likeBoolean = HashMap();
         };
 
-        dto = intent.getSerializableExtra("dto") as? PhotosMainDTO;
-        adapter = PhotosViewAdapter(layoutInflater, dto!!, PhotosViewActivity());
-
         val imgRes = intent.getIntExtra("imgres", 0);
         val imgKey = imgRes.toString();
-        val isLiked = PhotosCommon.likeBoolean?.get(imgKey) ?: false
+        val isLiked = PhotosCommon.likeBoolean?.get(imgKey) ?: false;
         if (imgRes != 0) {
             binding.imgvMain.setImageResource(imgRes);
         };
@@ -77,7 +70,7 @@ class PhotosViewDetailActivity : AppCompatActivity() {
                 PhotosCommon.imgRes?.add(imgRes);
                 PhotosCommon.likeBoolean?.put(imgKey, true);
             }
-            adapter.notifyDataSetChanged();
+
         };
 
         binding.imgvBack.setOnClickListener { finish(); };

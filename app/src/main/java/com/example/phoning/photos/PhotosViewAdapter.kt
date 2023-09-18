@@ -51,8 +51,6 @@ class PhotosViewAdapter(var inflater: LayoutInflater, var dto: PhotosMainDTO, va
         binding.imgvPhoto.setOnClickListener {
             val intent = Intent(context, PhotosViewDetailActivity::class.java);
             intent.putExtra("imgres", dto.imgSubs!![position]);
-            intent.putExtra("dto", dto);
-            intent.putExtra("count", position);
             context.startActivityForResult(intent, 1000);
         };
         return binding.root;
