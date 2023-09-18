@@ -10,6 +10,7 @@ class MessageChatActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMessageChatBinding;
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
         binding = ActivityMessageChatBinding.inflate(layoutInflater);

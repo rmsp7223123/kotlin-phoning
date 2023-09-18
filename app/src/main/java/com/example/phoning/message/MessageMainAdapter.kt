@@ -20,7 +20,10 @@ class MessageMainAdapter(private val context: Context, private val list: ArrayLi
     };
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.binding.imgvNewjeans.setImageResource(list[position].imgRes);
+        holder.binding.tvName.text = list[position].name;
+        holder.binding.tvMsg.text = list[position].content;
+        holder.binding.tvMsgDate.text = list[position].date;
     };
 
     inner class ViewHolder(val binding: ItemRecvMessageBinding) : RecyclerView.ViewHolder(binding.root);
