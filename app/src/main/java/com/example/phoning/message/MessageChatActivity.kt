@@ -4,20 +4,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.phoning.HideActionBar
 import com.example.phoning.R
-import com.example.phoning.databinding.ActivityMessageMainBinding
+import com.example.phoning.databinding.ActivityMessageChatBinding
 
-class MessageMainActivity : AppCompatActivity() {
+class MessageChatActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityMessageMainBinding;
+    private lateinit var binding : ActivityMessageChatBinding;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMessageMainBinding.inflate(layoutInflater);
+        binding = ActivityMessageChatBinding.inflate(layoutInflater);
         setContentView(binding.root);
 
         val hideActionBar = HideActionBar();
         hideActionBar.hideActionBar(this);
-
-        binding.imgvBack.setOnClickListener { finish(); };
     }
 }
