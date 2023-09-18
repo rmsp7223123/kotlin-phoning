@@ -1,5 +1,6 @@
 package com.example.phoning.photos
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.phoning.HideActionBar
@@ -70,7 +71,6 @@ class PhotosViewDetailActivity : AppCompatActivity() {
                 PhotosCommon.imgRes?.add(imgRes);
                 PhotosCommon.likeBoolean?.put(imgKey, true);
             }
-
         };
 
         binding.imgvBack.setOnClickListener { finish(); };

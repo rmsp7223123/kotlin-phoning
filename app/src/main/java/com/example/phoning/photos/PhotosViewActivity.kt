@@ -47,9 +47,9 @@ class PhotosViewActivity : AppCompatActivity() {
         if (resultCode == RESULT_OK && requestCode == 1000) {
             dto = data!!.getSerializableExtra("dto") as PhotosMainDTO?
             gridvAdapter!!.dto = dto!!;
-            gridvAdapter!!.notifyDataSetChanged();
         };
-    }
+        gridvAdapter!!.notifyDataSetChanged();
+    };
 
 
 }
