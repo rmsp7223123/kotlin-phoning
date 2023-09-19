@@ -83,7 +83,7 @@ class MessageMainActivity : AppCompatActivity() {
                     };
                 };
                 if (isCheck) {
-                    list.add(MessageMainDTO(imgRes, name, dto?.content ?: "", dto?.date ?: ""));
+                    list.add(MessageMainDTO(imgRes, name, dto?.content ?: "", dto?.date ?: "", true));
                 };
                 adapter.notifyDataSetChanged();
             };

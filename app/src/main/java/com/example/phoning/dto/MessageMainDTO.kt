@@ -1,4 +1,5 @@
 package com.example.phoning.dto
 
-class MessageMainDTO (var imgRes : Int, var name : String, var content : String, var date : String, var isCheck : Boolean);
-
+class MessageMainDTO (var imgRes : Int, var name : String, var content : String, var date : String, var isCheck : Boolean){
+    constructor() : this(0, "", "", "", true);
+};
