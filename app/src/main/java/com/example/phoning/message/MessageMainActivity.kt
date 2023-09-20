@@ -34,12 +34,6 @@ class MessageMainActivity : AppCompatActivity() {
         val hideActionBar = HideActionBar();
         hideActionBar.hideActionBar(this);
 
-        adapter = MessageMainAdapter(this, list);
-        binding.recv.apply {
-            layoutManager = LinearLayoutManager(this@MessageMainActivity);
-            this.adapter = adapter;
-        };
-
         databaseReference.child("messages/chat").addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val name = snapshot.key;
@@ -53,6 +47,11 @@ class MessageMainActivity : AppCompatActivity() {
                         else -> R.drawable.newjeans11;
                     };
                     addList(name, imgRes);
+                    adapter = MessageMainAdapter(this, list)
+                    binding.recv.apply {
+                        layoutManager = LinearLayoutManager(this@MessageMainActivity);
+                        this.adapter = adapter;
+                    };
                     adapter.notifyDataSetChanged();
                 };
             };
@@ -65,6 +64,7 @@ class MessageMainActivity : AppCompatActivity() {
 
             override fun onCancelled(error: DatabaseError) {};
         })
+
 
 
         binding.imgvBack.setOnClickListener { finish(); };
@@ -97,4 +97,6 @@ class MessageMainActivity : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {};
         })
     }
+
+
 }
